@@ -7,6 +7,7 @@ import {
 import { auth } from '../firebase/firebaseConfig'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { RoutesEnum } from '../constants/routes'
 
 declare global {
   interface Window {
@@ -79,7 +80,7 @@ export const useAuth = () => {
 
             // Для установки номера телефона
             dispatch({ type: 'SET_PHONE', payload: phoneNumber })
-            navigate('/home')
+            navigate(RoutesEnum.RECEIPTS)
             if (user.uid) {
               localStorage.setItem('access', user.uid)
             }
