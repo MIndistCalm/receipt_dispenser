@@ -3,9 +3,16 @@
 body {
   min-height: 100vh;
   min-width: 100vw;
+  background-color: #fcfcfc;
 }
 
 #root {
   min-height: 100vh;
   min-width: 100vw;
+}
+
+@media (width >= 48rem) {
+  #root {
+    padding: calc(0.25rem * 8);
+  }
 }

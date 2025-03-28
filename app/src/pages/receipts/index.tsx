@@ -1,9 +1,6 @@
+import { EmojiEnum } from '../../assets/images'
 import { EmptyReceiptsList, ReceiptHeader, ReceiptList } from '../../entities'
 
-const containerBaseStyle =
-  'mx-auto flex h-screen flex-col gap-3 rounded-2xl bg-gray-50'
-const containerResponsiveStyle =
-  'md:h-[calc(100vh-0.25rem*8)] md:max-w-[500px] md:py-8 md:shadow-2xl'
 const scrollbarTrackStyle =
   '[&::-webkit-scrollbar-track]:transparent h-full overflow-y-auto px-3'
 const scrollbarThumbStyle =
@@ -11,16 +8,109 @@ const scrollbarThumbStyle =
 const scrollbarTrackDarkStyle =
   '[&::-webkit-scrollbar-track]:rounded-full dark:[&::-webkit-scrollbar-track]:bg-transparent'
 
+export interface Receipt {
+  id: number
+  date: string
+  amount: number
+  label: string
+  emoji: string
+  users: User[]
+}
+
+export interface User {
+  id: number
+  name: string
+  image: string
+}
+
 export const Receipts = () => {
-  const receipt = []
+  const receipts: Receipt[] = [
+    {
+      id: 1,
+      date: new Date().toUTCString(),
+      amount: 100,
+      label: 'Каршеринг',
+      emoji: EmojiEnum.PINK_HEART,
+      users: [
+        {
+          id: 1,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+        {
+          id: 2,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+        {
+          id: 3,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+      ],
+    },
+    {
+      id: 2,
+      date: new Date().toUTCString(),
+      amount: 1_326.87,
+      label: 'Каршеринг',
+      emoji: EmojiEnum.PINK_HEART,
+      users: [
+        {
+          id: 1,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+        {
+          id: 2,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+        {
+          id: 3,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+      ],
+    },
+    {
+      id: 3,
+      date: new Date().toUTCString(),
+      amount: 100,
+      label: 'Каршеринг',
+      emoji: EmojiEnum.PINK_HEART,
+      users: [
+        {
+          id: 1,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+        {
+          id: 2,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+        {
+          id: 3,
+          name: 'John Doe',
+          image: 'https://picsum.photos/id/100/200/300',
+        },
+      ],
+    },
+  ]
+
   return (
-    <div className={`${containerBaseStyle} ${containerResponsiveStyle}`}>
+    <>
       <ReceiptHeader />
       <div
         className={`${scrollbarTrackStyle} ${scrollbarThumbStyle} ${scrollbarTrackDarkStyle}`}
       >
-        {receipt.length > 0 ? <ReceiptList /> : <EmptyReceiptsList />}
+        {receipts.length > 0 ? (
+          <ReceiptList receipts={receipts} />
+        ) : (
+          <EmptyReceiptsList />
+        )}
       </div>
-    </div>
+    </>
   )
 }
